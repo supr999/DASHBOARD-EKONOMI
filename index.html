@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Economic Dashboard</title>
+  <style>
+    body { font-family: Arial; background:#0f172a; color:white; }
+    .card { background:#1e293b; padding:15px; margin:10px; border-radius:10px;}
+  </style>
+</head>
+<body>
+
+<h1>🚀 Economic News Dashboard</h1>
+<div id="news"></div>
+
+<script>
+fetch('data/news.json')
+  .then(res => res.json())
+  .then(data => {
+    let html = "";
+    data.forEach(n => {
+      html += `
+        <div class="card">
+          <h3>${n.title}</h3>
+          <p>🕒 ${n.time}</p>
+          <p>💵 USD: ${n.usd}</p>
+          <p>🪙 GOLD: ${n.gold}</p>
+          <p>📊 ${n.sentiment}</p>
+          <p>🧠 ${n.summary}</p>
+        </div>
+      `;
+    });
+    document.getElementById("news").innerHTML = html;
+  });
+</script>
+
+</body>
+</html>
